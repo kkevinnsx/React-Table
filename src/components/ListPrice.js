@@ -1,34 +1,49 @@
 import { Col, Container, Row } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
 
-let id_produto_1     = 1;
-let id_produto_2     = 2;
-let id_produto_3     = 3;
-     
-let produto_1        = "Pastel";
-let produto_2        = "Pamonha";
-let produto_3        = "Pizza";
-     
-let categoria_1      = "comida";
-let categoria_2      = "comida";
-let categoria_3      = "comida";
-     
-let quantidade_1     = 5;
-let quantidade_2     = 8;
-let quantidade_3     = 9;
+let idProduto01 = {
+    id: 1,
+    produto: "Pastel",
+    categoria: "Comida",
+    quantidade: 25,
+    preco: 8.75,
+};
 
-let preco_1          = 8.00;
-let preco_2          = 15.00;
-let preco_3          = 71.00;
+let idProduto02 = {
+    id: 2,
+    produto: "Pamonha",
+    categoria: "Comida",
+    quantidade: 15,
+    preco: 10.00,
+};
 
-let precoTotal_1     = preco_1 * quantidade_1; 
-let precoTotal_2     = preco_2 * quantidade_2; 
-let precoTotal_3     = preco_3 * quantidade_3; 
+let idProduto03 = {
+    id: 3,
+    produto: "Pizza",
+    categoria: "Comida",
+    quantidade: 12,
+    preco: 75.00,
+};
 
-let quantidade_total = quantidade_1 + quantidade_2 + quantidade_3;
-let preco_geral      = preco_1      + preco_2      + preco_3;
-let geral_preco      = precoTotal_1 + precoTotal_2 + precoTotal_3;
+let valorProduto = {
+    totalProd01: idProduto01.preco * idProduto01.quantidade,
+    totalProd02: idProduto02.preco * idProduto02.quantidade,
+    totalProd03: idProduto03.preco * idProduto03.quantidade,
+};
 
+let gerais = {
+    preco: idProduto01.preco + idProduto02.preco + idProduto03.preco,
+    quantidade: idProduto01.quantidade + idProduto02.quantidade + idProduto03.quantidade,
+    precoGeral: valorProduto.totalProd01 + valorProduto.totalProd02 + valorProduto.totalProd03,
+};
+
+let listaProdutinhos = [
+    idProduto01,
+    idProduto02,
+    idProduto03,
+    valorProduto,
+    gerais
+];
 
 function ListPrice(){
     return (
@@ -49,43 +64,15 @@ function ListPrice(){
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>{id_produto_1}</td>
-                <td>{produto_1}</td>
-                <td>{categoria_1}</td>
-                <td class="right">{quantidade_1}</td>
-                <td class="right">R$ {preco_1}</td>
-                <td class="right">R$ {precoTotal_1}</td>
 
-            </tr>
-            <tr>
-                <td>{id_produto_2}</td>
-                <td>{produto_2}</td>
-                <td>{categoria_2}</td>
-                <td class="right">{quantidade_2}   </td>
-                <td class="right">R$ {preco_2}     </td>
-                <td class="right">R$ {precoTotal_2}</td>
+        {listaProdutinhos.map(function(batata){
+            return <tr>
+                <td>{batata.id}</td><td>{batata.produto}</td><td>{batata.categoria}</td><td>{batata.quantidade}</td><td>{batata.preco}</td><td></td>
+            </tr>;
+        }
+    )
+}
 
-
-            </tr>
-            <tr>
-                <td>{id_produto_3}</td>
-                <td>{produto_3}</td>
-                <td>{categoria_3}</td>
-                <td class="right">{quantidade_3}</td>
-                <td class="right">R$ {preco_3}</td>
-                <td class="right">R$ {precoTotal_3}</td>
-
-            </tr>
-            <tr>
-                <td></td>
-                <td class="back"></td>
-                <td class="back"></td>
-                <td class="right">{quantidade_total}</td>
-                <td class="right">R$ {preco_geral}</td>
-                <td class="right">R$ {geral_preco}</td>
-
-            </tr>
         </tbody>
 
     </Table>
