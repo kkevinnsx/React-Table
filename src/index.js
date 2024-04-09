@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import 'bootstrap/dist/css/bootstrap.min.css';import FirstExercice from './Exercices/FirstExercice';
+import SecondExercice from './Exercices/SecondExercice';
 import reportWebVitals from './reportWebVitals';
+import ThirdExercice from './Exercices/ThirdExercice';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+
+    <ThirdExercice  />
   </React.StrictMode>
 );
 
