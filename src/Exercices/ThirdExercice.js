@@ -38,6 +38,7 @@ function ThirdExercice(){
     <div className = "col-sm-12 col-md-2 col-lg-2 mt-5">
     <label class   = "label-control"><b>Nome da Equipe: </b></label>
         <input
+            class       = "form-control" 
             onChange    = {NomeEquipe}  
             placeholder = "Digite o nome do Time"
             maxLength   = {50}
@@ -48,6 +49,7 @@ function ThirdExercice(){
     <div className = "col-sm-12 col-md-2 col-lg-2 mt-5">
         <label class   = "label-control"><b>Quantidade de Vitorias: </b></label>
             <input
+            class       = "form-control"
             onChange    = {qntVitorias}
             placeholder = "Digite o N° de Vitorias"
             maxLength   = {50} 
@@ -57,8 +59,9 @@ function ThirdExercice(){
     </div>
 
     <div className = "col-sm-12 col-md-8 col-lg-2 mt-5">
-        <label class   = "label-control"><b>Quantidade de Empates: </b></label>
+        <label class    = "label-control"><b>Quantidade de Empates: </b></label>
             <input
+            class       = "form-control"
             onChange    = {qntEmpates}
             placeholder = "Digite o N° de Empates"
             maxLength   = {50} 
@@ -69,15 +72,15 @@ function ThirdExercice(){
 
     <div className   = "col-sm-12 col-md-8 col-lg-1 mt-3">
         <button type = "button"
-        disabled     = {!NomeTime || !Vitorias || !Empates}
-        class        = "btn btn-primary mt-5"
-        >Calcular
+            disabled     = {!NomeTime || !Vitorias || !Empates}
+            class        = "btn btn-primary mt-5"
+            >Calcular
         </button>
     </div>
-</div>
-</div>
-</div>
-</div>
+    </div>
+        </div>
+            </div>
+                </div>
     </>
 );
 }
