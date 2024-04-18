@@ -1,10 +1,10 @@
-import FifthExercice from "../Exercices/FifthExercice";
+import SixthExercice from "../Exercices/SixthExercice";
 
 const PrincipalPage = () => {
     return(
         <>
         <div className = "container p-2">
-            <FifthExercice />
+            <SixthExercice />
         </div>
         </>
     );

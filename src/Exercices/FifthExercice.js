@@ -4,26 +4,32 @@ import axios from "axios";
 
 function FifthExercice() {
   const [cep, setCep] = useState("");
-  let   [status, setStatus] = useState("");
+  const [address, setAddress] = useState({});
+  const [status, setStatus] = useState({
+    variant: "",
+    message: "",
+  });
 
   function buscarCEP(cep) {
-    axios.get(`https://viacep.com.br/ws/${cep}/json`).then(function(response) {
-      console.log(JSON.stringify(response.data));
+    axios
+      .get(`https://viacep.com.br/ws/${cep}/json`)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
 
-      setStatus({
-        "variant": "primary",
-        "message": "Deu tudo certo!"
-      })
-
-    }).catch(function (error){
+        setAddress(response.data);
         setStatus({
-            "variant": "danger",
-            "message": "Deu tudo errado!"
-        })
+          variant: "primary",
+          message: "Deu tudo certo!",
+        });
+      })
+      .catch(function (error) {
+        setStatus({
+          variant: "danger",
+          message: "Deu tudo errado!",
+        });
 
-
-      console.log(error);
-    });
+        console.log(error);
+      });
   }
 
   const mudarCep = (event) => {
@@ -44,14 +50,14 @@ function FifthExercice() {
               <div className="col-sm-12 col-md-12 col-lg-12 mt-5">
                 <label className="label-control"><b>Digite o seu CEP:</b></label>
                 <input
-                  onChange    = {mudarCep}
-                  className   = "form-control"
-                  placeholder = "CEP"
-                  maxLength   = {8}
-                  value       = {cep}
-                  type        = "number"
+                  onChange={mudarCep}
+                  className="form-control"
+                  placeholder="CEP"
+                  maxLength={8}
+                  value={cep}
+                  type="number"
                 ></input>
-              </div>
+                </div>
               <button
                 className="btn btn-primary mt-5"
                 onClick={() => buscarCEP(cep)}
@@ -60,32 +66,20 @@ function FifthExercice() {
               </button>
             </div>
           </div>
-          <Alert
-            variant = {status.variant}>{status.message}
-        </Alert>
-        <div className='container mt-4'>
-        {status.data && <pre>{JSON.stringify(status.data)}            </pre>}
-        <p>CEP:</p>
-        {status.data && <pre>{JSON.stringify(status.data.cep)}        </pre>}
-        <p>Logradouro:</p>
-        {status.data && <pre>{JSON.stringify(status.data.logradouro)} </pre>}
-        <p>Complemento:</p>
-        {status.data && <pre>{JSON.stringify(status.data.complemento)}</pre>}
-        <p>Localidade:</p>
-        {status.data && <pre>{JSON.stringify(status.data.localidade)} </pre>}
-        <p>UF:</p>
-        {status.data && <pre>{JSON.stringify(status.data.uf)}         </pre>}
-        <p>IBGE:</p>
-        {status.data && <pre>{JSON.stringify(status.data.ibge)}       </pre>}
-        <p>GIA:</p>
-        {status.data && <pre>{JSON.stringify(status.data.gia)}        </pre>}
-        <p>DDD:</p>
-        {status.data && <pre>{JSON.stringify(status.data.ddd)}        </pre>}
-        <p>SIAFI:</p>
-        {status.data && <pre>{JSON.stringify(status.data.siafi)}      </pre>}
+          <Alert variant={status.variant}>{status.message}</Alert>
+            <div className="container mt-4">
+              <p>CEP: {address.cep}</p>
+              <p>Logradouro: {address.logradouro}</p>
+              <p>Complemento: {address.complemento || "-"}</p>
+              <p>Localidade: {address.localidade}</p>
+              <p>UF: {address.uf}</p>
+              <p>IBGE: {address.ibge}</p>
+              <p>GIA: {address.gia}</p>
+              <p>DDD: {address.ddd}</p>
+              <p>SIAFI: {address.siafi || "-"}</p>
+            </div>
         </div>
       </div>
-    </div>
     </>
   );
 }
